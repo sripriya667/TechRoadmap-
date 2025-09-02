@@ -71,6 +71,8 @@
   border-radius: 12px;
   padding: 32px;
   height: fit-content;
+  position: relative;
+  z-index: 2;
 }
 
 .info-section {
@@ -132,6 +134,8 @@
   border: 1px solid #333333;
   border-radius: 12px;
   padding: 24px;
+  position: relative;
+  z-index: 1;
 }
 
 .snippet-header {
@@ -185,8 +189,8 @@
   background: linear-gradient(135deg, rgba(79,70,229,0.15), rgba(236,72,153,0.15));
   border: 1px solid rgba(255,255,255,0.15);
   box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-  position: sticky;
-  top: 20px;
+  position: static;
+  top: auto;
 }
 
 .html-code-panel .code-block.colorful pre,
@@ -207,6 +211,9 @@
   margin: 0 !important;
   background: #000000 !important;
   border-radius: 8px !important;
+  white-space: pre-wrap !important;
+  word-break: break-word !important;
+  overflow-wrap: anywhere !important;
 }
 
 .language-footer {
