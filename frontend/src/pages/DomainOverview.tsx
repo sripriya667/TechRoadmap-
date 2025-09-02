@@ -76,7 +76,13 @@ const DomainOverview: React.FC = () => {
             <button
               key={tab.id}
               className={`tab-button ${activeTab === tab.id ? 'active' : ''}`}
-              onClick={() => setActiveTab(tab.id as any)}
+              onClick={() => {
+                setActiveTab(tab.id as any);
+                const url = new URL(window.location.href);
+                url.searchParams.set('tab', tab.id);
+                window.history.replaceState({}, '', url.toString());
+                window.scrollTo(0, 0);
+              }}
             >
               {tab.label}
             </button>

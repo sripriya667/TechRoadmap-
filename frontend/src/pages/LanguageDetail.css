@@ -175,6 +175,12 @@
   border: 1px solid #333333;
 }
 
+.code-block pre {
+  white-space: pre-wrap !important;
+  word-break: break-word !important;
+  overflow-wrap: anywhere !important;
+}
+
 .html-code-panel .snippet-container.floating-snippet {
   background: linear-gradient(135deg, rgba(79,70,229,0.15), rgba(236,72,153,0.15));
   border: 1px solid rgba(255,255,255,0.15);
