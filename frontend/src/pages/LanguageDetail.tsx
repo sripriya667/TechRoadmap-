@@ -40,6 +40,40 @@ const HTML_FALLBACK: Language = {
   ]
 };
 
+const CSS_FALLBACK: Language = {
+  _id: 'local-css',
+  name: 'CSS',
+  category: 'frontend',
+  description: 'Stylesheet language for describing the presentation of a document.',
+  useCase: 'Styling and layout of web pages and UI components.',
+  difficulty: 'beginner',
+  codeSnippets: [
+    {
+      title: 'Button Styles',
+      description: 'A simple button style with hover state.',
+      language: 'css',
+      code: `.btn {\n  background: #4f46e5;\n  color: #fff;\n  padding: 10px 16px;\n  border-radius: 8px;\n}\n.btn:hover {\n  background: #3730a3;\n}`
+    }
+  ]
+};
+
+const JAVASCRIPT_FALLBACK: Language = {
+  _id: 'local-js',
+  name: 'JavaScript',
+  category: 'frontend',
+  description: 'Programming language of the web for interactivity and logic.',
+  useCase: 'Interactivity, DOM manipulation, API calls, SPA logic.',
+  difficulty: 'beginner',
+  codeSnippets: [
+    {
+      title: 'Counter',
+      description: 'Simple interactive counter.',
+      language: 'javascript',
+      code: `let count = 0;\nconst btn = document.getElementById('inc');\nconst out = document.getElementById('out');\nbtn.addEventListener('click', () => {\n  count++;\n  out.textContent = count;\n});`
+    }
+  ]
+};
+
 const LanguageDetail: React.FC = () => {
   const { category, language } = useParams<{ category: string; language: string }>();
   const [languageData, setLanguageData] = useState<Language | null>(null);
@@ -62,31 +96,40 @@ const LanguageDetail: React.FC = () => {
   }, [activeSnippet, languageData]);
 
   const fetchLanguage = async () => {
+    let languages: Language[] = [];
+    let fetchFailed = false;
     try {
       const response = await fetch(`http://localhost:5000/api/languages/category/${category}`);
-      let languages: Language[] = [];
       if (response.ok) {
         languages = await response.json();
+      } else {
+        fetchFailed = true;
       }
-      let targetLanguage = languages.find((lang: Language) => 
-        lang.name.toLowerCase() === language?.toLowerCase()
-      );
-      
-      // Fallback for HTML detail
-      if (!targetLanguage && category === 'frontend' && language?.toLowerCase() === 'html') {
-        targetLanguage = HTML_FALLBACK;
-      }
-      
-      if (!targetLanguage) {
-        throw new Error('Language not found');
-      }
-      
-      setLanguageData(targetLanguage);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'An error occurred');
-    } finally {
-      setLoading(false);
+    } catch (_err) {
+      fetchFailed = true;
     }
+
+    let targetLanguage = languages.find((lang: Language) => 
+      lang.name.toLowerCase() === language?.toLowerCase()
+    );
+
+    if (!targetLanguage && category === 'frontend') {
+      const langKey = (language || '').toLowerCase();
+      if (langKey === 'html') targetLanguage = HTML_FALLBACK;
+      if (langKey === 'css') targetLanguage = CSS_FALLBACK;
+      if (langKey === 'javascript') targetLanguage = JAVASCRIPT_FALLBACK;
+    }
+
+    if (!targetLanguage) {
+      const message = fetchFailed ? 'Unable to load language data (server unavailable)' : 'Language not found';
+      setError(message);
+      setLoading(false);
+      return;
+    }
+
+    setLanguageData(targetLanguage);
+    setError('');
+    setLoading(false);
   };
 
   const startTypingEffect = () => {
