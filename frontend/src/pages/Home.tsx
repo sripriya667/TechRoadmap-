@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { buildLanguageUrl } from '../utils/techRouting';
 import { motion } from 'framer-motion';
 import './Home.css';
 
@@ -217,31 +218,11 @@ const Home: React.FC = () => {
                 <div className="technologies-preview">
                   <h4>Technologies included:</h4>
                   <div className="tech-tags">
-                    {category.technologies.slice(0, 4).map((tech, techIndex) => {
-                      // Make Frontend tags clickable to specific languages
-                      if (category.id === 'frontend') {
-                        const techLower = tech.toLowerCase();
-                        const to = techLower.includes('html')
-                          ? '/languages/frontend/html'
-                          : techLower.includes('css')
-                          ? '/languages/frontend/css'
-                          : techLower.includes('javascript')
-                          ? '/languages/frontend/javascript'
-                          : undefined;
-                        if (to) {
-                          return (
-                            <Link key={techIndex} to={to} className="tech-tag" title={`Explore ${tech}`}>
-                              {tech}
-                            </Link>
-                          );
-                        }
-                      }
-                      return (
-                        <span key={techIndex} className="tech-tag">
-                          {tech}
-                        </span>
-                      );
-                    })}
+                    {category.technologies.slice(0, 4).map((tech, techIndex) => (
+                      <Link key={techIndex} to={buildLanguageUrl(tech)} className="tech-tag" title={`Explore ${tech}`}>
+                        {tech}
+                      </Link>
+                    ))}
                     {category.technologies.length > 4 && (
                       <span className="tech-tag more">
                         +{category.technologies.length - 4} more

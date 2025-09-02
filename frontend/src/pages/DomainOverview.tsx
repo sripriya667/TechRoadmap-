@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { useParams, Link, useLocation } from 'react-router-dom';
+import { buildLanguageUrl } from '../utils/techRouting';
 import { motion, AnimatePresence } from 'framer-motion';
 import { techDomains } from '../data/techDomains';
 import './DomainOverview.css';
@@ -134,10 +135,10 @@ const DomainOverview: React.FC = () => {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.4, delay: index * 0.1 }}
                     >
-                      <div className="language-header">
+                      <Link to={buildLanguageUrl(language.name)} className="language-header">
                         <img src={language.icon} alt={language.name} className="language-icon" />
                         <h3>{language.name}</h3>
-                      </div>
+                      </Link>
                       <p className="language-description">{language.description}</p>
                     </motion.div>
                   ))}
@@ -159,10 +160,10 @@ const DomainOverview: React.FC = () => {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.4, delay: index * 0.1 }}
                     >
-                      <div className="framework-header">
+                      <Link to={buildLanguageUrl(framework.name)} className="framework-header">
                         <img src={framework.icon} alt={framework.name} className="framework-icon" />
                         <h3>{framework.name}</h3>
-                      </div>
+                      </Link>
                       <p className="framework-description">{framework.description}</p>
                     </motion.div>
                   ))}

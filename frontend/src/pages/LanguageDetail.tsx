@@ -257,42 +257,47 @@ const LanguageDetail: React.FC = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            {isHTML ? (
-              <>
-                <div className="info-section">
-                  <h3>History</h3>
-                  <p>HTML (HyperText Markup Language) was created by Tim Berners-Lee in 1991 to structure and link documents on the early web. It has evolved through versions (HTML 2.0, 3.2, 4.01) and today is standardized as HTML Living Standard by WHATWG.</p>
-                </div>
-                <div className="info-section">
-                  <h3>Where It’s Used</h3>
-                  <p>HTML is used everywhere content is displayed on the web: websites, web apps, CMS templates, emails, documentation sites, and embedded UIs (e.g., WebViews in mobile apps).</p>
-                </div>
-                <div className="info-section">
-                  <h3>Domains</h3>
-                  <p>HTML is foundational across multiple domains including Frontend Development, Content Management Systems, SEO/Content Publishing, E‑commerce, Marketing/Landing Pages, Technical Documentation, and Education/Bootcamps.</p>
-                </div>
-                <div className="info-section">
-                  <h3>Why It Matters</h3>
-                  <p>HTML is the foundation of the web. It defines structure and semantics, enabling accessibility, SEO, and robust styling/interaction with CSS and JavaScript.</p>
-                </div>
-                <div className="info-section">
-                  <h3>Demand</h3>
-                  <p>HTML remains among the most in‑demand skills for entry‑level and professional frontend roles. Nearly all web job postings list HTML alongside CSS and JavaScript, and proficiency in semantic, accessible HTML is a key hiring signal.</p>
-                </div>
-              </>
-            ) : (
-              <>
-                <div className="info-section">
-                  <h3>Use Case</h3>
-                  <p>{languageData.useCase}</p>
-                </div>
-                
-                <div className="info-section">
-                  <h3>About {languageData.name}</h3>
-                  <p>{languageData.description}</p>
-                </div>
-              </>
-            )}
+            {/* Standardized five sections for every language */}
+            <div className="info-section">
+              <h3>History</h3>
+              <p>
+                {isHTML
+                  ? 'HTML (HyperText Markup Language) was created by Tim Berners-Lee in 1991 to structure and link documents on the early web. It has evolved through versions (HTML 2.0, 3.2, 4.01) and today is standardized as HTML Living Standard by WHATWG.'
+                  : `A brief history of ${languageData.name}. Add origin story, key versions, and milestones here.`}
+              </p>
+            </div>
+            <div className="info-section">
+              <h3>Where It’s Used</h3>
+              <p>
+                {isHTML
+                  ? 'HTML is used everywhere content is displayed on the web: websites, web apps, CMS templates, emails, documentation sites, and embedded UIs (e.g., WebViews in mobile apps).'
+                  : `Typical usage of ${languageData.name} across applications and industries.`}
+              </p>
+            </div>
+            <div className="info-section">
+              <h3>Domains</h3>
+              <p>
+                {isHTML
+                  ? 'HTML is foundational across multiple domains including Frontend Development, Content Management Systems, SEO/Content Publishing, E‑commerce, Marketing/Landing Pages, Technical Documentation, and Education/Bootcamps.'
+                  : `Common domains where ${languageData.name} is prevalent (e.g., web, backend, data, DevOps).`}
+              </p>
+            </div>
+            <div className="info-section">
+              <h3>Why It Matters</h3>
+              <p>
+                {isHTML
+                  ? 'HTML is the foundation of the web. It defines structure and semantics, enabling accessibility, SEO, and robust styling/interaction with CSS and JavaScript.'
+                  : `${languageData.name} is important because … (concise value proposition).`}
+              </p>
+            </div>
+            <div className="info-section">
+              <h3>Demand</h3>
+              <p>
+                {isHTML
+                  ? 'HTML remains among the most in‑demand skills for entry‑level and professional frontend roles. Nearly all web job postings list HTML alongside CSS and JavaScript, and proficiency in semantic, accessible HTML is a key hiring signal.'
+                  : `Market demand and roles frequently requiring ${languageData.name}.`}
+              </p>
+            </div>
           </motion.div>
 
           <motion.div
@@ -345,6 +350,17 @@ const LanguageDetail: React.FC = () => {
                 </div>
               </div>
             )}
+
+            {/* Learn more links (placeholder, user will update) */}
+            <div className="learn-more">
+              <h3>Learn more about {languageData.name}</h3>
+              <ul>
+                <li><a href="#" target="_blank" rel="noreferrer">Official Docs</a></li>
+                <li><a href="#" target="_blank" rel="noreferrer">MDN / Reference</a></li>
+                <li><a href="#" target="_blank" rel="noreferrer">Recommended YouTube Tutorial</a></li>
+              </ul>
+              <p className="note">Replace the above links with your preferred resources.</p>
+            </div>
           </motion.div>
         </div>
 

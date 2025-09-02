@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { buildLanguageUrl } from '../utils/techRouting';
 import { motion } from 'framer-motion';
 import './Languages.css';
 
@@ -98,9 +99,7 @@ const Languages: React.FC = () => {
   ];
 
   const handleTechnologyClick = (technology: string) => {
-    // Navigate to the Languages & Frameworks section with the specific technology
-    // This will be handled by the LanguageCategory component
-    window.location.href = `/languages/search?tech=${encodeURIComponent(technology)}`;
+    window.location.href = buildLanguageUrl(technology);
   };
 
   return (
