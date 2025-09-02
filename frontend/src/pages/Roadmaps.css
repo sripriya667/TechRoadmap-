@@ -1,0 +1,527 @@
+.roadmaps-page {
+  padding: 80px 0;
+  background: radial-gradient(1200px 600px at 50% -10%, rgba(79,70,229,0.15), transparent 60%),
+              radial-gradient(800px 400px at -10% 20%, rgba(16,185,129,0.08), transparent 60%),
+              radial-gradient(800px 400px at 110% 30%, rgba(236,72,153,0.08), transparent 60%),
+              linear-gradient(180deg, #000000 0%, #111111 100%);
+  min-height: 100vh;
+}
+
+.roadmaps-header {
+  text-align: center;
+  margin-bottom: 60px;
+  color: white;
+}
+
+.roadmaps-header h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  background: linear-gradient(45deg, #ffffff, #f0f0f0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.roadmaps-header p {
+  font-size: 1.2rem;
+  opacity: 0.9;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.tech-domains-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-bottom: 60px;
+  align-items: stretch;
+}
+
+@media (max-width: 1024px) {
+  .tech-domains-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.tech-domain-card {
+  background: #111111;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  border: 1px solid #333333;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 16px; /* unified internal spacing */
+  height: 100%;
+}
+
+.tech-domain-card::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  pointer-events: none;
+  border-radius: 12px;
+  background: linear-gradient(120deg, rgba(99,102,241,0.35), rgba(236,72,153,0.25), rgba(16,185,129,0.25));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  padding: 1px;
+}
+
+.tech-domain-card:hover::after { opacity: 1; }
+
+.tech-domain-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  border-color: #ffffff;
+}
+
+.domain-header { display: none; }
+
+.domain-icon {
+  font-size: 3rem;
+  margin: 0; /* spacing handled by parent gap */
+}
+.domain-icon.center { text-align: center; }
+.domain-icon.left { text-align: left; }
+
+.domain-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.domain-meta-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+.time-estimate.small {
+  font-size: 0.8rem;
+  color: #aaaaaa;
+}
+
+.domain-meta { display: none; }
+.domain-meta-inline {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin: 0; /* spacing handled by parent gap */
+}
+.domain-meta-inline .separator { color: #777777; }
+
+.difficulty-badge {
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: capitalize;
+  color: white;
+  background: #333333;
+}
+
+.time-estimate {
+  font-size: 0.9rem;
+  color: #cccccc;
+  font-weight: 500;
+}
+
+.tech-domain-card h3 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin: 0; /* spacing handled by parent gap */
+  color: #ffffff;
+  text-align: center;
+}
+.domain-title { text-align: center; }
+
+.domain-description { display: none; }
+.domain-overview { display: none; }
+.domain-overview-text {
+  font-size: 0.95rem;
+  color: #cccccc;
+  text-align: center;
+  line-height: 1.6;
+  margin: 0; /* spacing handled by parent gap */
+}
+
+.domain-overview {
+  margin: 0; /* remove gap above/below overview */
+  padding: 0; /* ensure no padding contributes to space */
+}
+
+.domain-overview h4 {
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin: 0; /* no heading margin to avoid margin-collapsing */
+  color: #ffffff;
+}
+
+.domain-overview p {
+  font-size: 0.85rem;
+  color: #cccccc;
+  line-height: 1.4;
+  margin: 0; /* no paragraph margin */
+}
+
+.domain-technologies {
+  margin: 4px 0 0 0; /* compact gap above Key Languages/Frameworks */
+  padding: 0; /* ensure no padding */
+}
+
+.languages-section,
+.frameworks-section {
+  margin: 0; /* remove top/bottom margins entirely */
+  padding: 0; /* ensure no padding */
+}
+
+
+.languages-section h4,
+.frameworks-section h4 {
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin: 0; /* no heading margin */
+  color: #ffffff;
+}
+
+/* Normalize default margins inside card to eliminate collapsed gaps */
+.tech-domain-card p { margin: 0; }
+.tech-domain-card h4 { margin: 0; }
+
+.tech-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.tech-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 8px;
+  background: #222222;
+  border-radius: 10px;
+  font-size: 0.78rem;
+  color: #cccccc;
+  border: 1px solid #444444;
+  transition: all 0.2s ease;
+}
+
+.tech-item.clickable {
+  cursor: pointer;
+  background: #2a2a2a;
+  border-color: #555555;
+}
+
+.tech-item.clickable:hover {
+  background: #4f46e5;
+  border-color: #6366f1;
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(79, 70, 229, 0.3);
+}
+
+.tech-item:hover {
+  background: #333333;
+  border-color: #666666;
+}
+
+.tech-item.more {
+  background: #1a1a1a;
+  color: #999999;
+  border-color: #333333;
+}
+
+.tech-icon {
+  width: 14px;
+  height: 14px;
+  object-fit: contain;
+}
+
+.roadmap-preview {
+  margin-bottom: 20px;
+}
+
+.roadmap-preview h4 {
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: #ffffff;
+}
+
+.roadmap-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.roadmap-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 8px;
+  background: #1a1a1a;
+  border-radius: 8px;
+  border-left: 2px solid #666666;
+}
+
+.roadmap-step.more {
+  border-left-color: #444444;
+  background: #0f0f0f;
+}
+
+.step-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  background: #666666;
+  color: white;
+  border-radius: 50%;
+  font-size: 0.7rem;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.roadmap-step.more .step-number {
+  background: #444444;
+}
+
+.step-content h5 {
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-bottom: 2px;
+  color: #ffffff;
+}
+
+.step-content p {
+  font-size: 0.75rem;
+  color: #cccccc;
+  line-height: 1.3;
+}
+
+.domain-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: auto; /* stick actions to bottom regardless of text height */
+  padding-top: 12px; /* small breathing space from text */
+  justify-content: center; /* center buttons */
+}
+
+/* Ensure Roadmaps card buttons are not affected by styles in other pages */
+.tech-domain-card .domain-actions {
+  margin-top: auto;
+  padding-top: 12px;
+  justify-content: center;
+  gap: 10px;
+}
+
+.domain-actions .btn {
+  flex: 0 0 auto; /* prevent stretching */
+  text-align: center;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  font-size: 0.85rem;
+  outline: none;
+}
+
+.tech-domain-card .domain-actions .btn {
+  flex: 0 0 auto;
+}
+
+.btn-primary {
+  background: #ffffff;
+  color: #000000;
+}
+
+.btn-primary:hover {
+  background: #f0f0f0;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(255,255,255,0.12), 0 0 0 1px rgba(255,255,255,0.08) inset;
+}
+
+/* Remove custom blue gradient on button click/focus */
+
+/* Remove any focus outlines/lines near titles within cards */
+.tech-domain-card h3:focus,
+.tech-domain-card h3:focus-visible {
+  outline: none;
+}
+
+.btn-secondary {
+  background: transparent;
+  color: #ffffff;
+  border: 1px solid #666666;
+}
+
+.btn-secondary:hover {
+  background: #333333;
+  border-color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(99,102,241,0.15);
+}
+
+.roadmaps-footer {
+  text-align: center;
+  color: white;
+  margin-top: 60px;
+}
+
+.roadmaps-footer h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  background: linear-gradient(45deg, #ffffff, #f0f0f0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.roadmaps-footer p {
+  font-size: 1.1rem;
+  opacity: 0.9;
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Loading and Error States */
+.loading-container,
+.error-container {
+  text-align: center;
+  color: white;
+  padding: 60px 20px;
+}
+
+.loading {
+  width: 50px;
+  height: 50px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top: 3px solid white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 20px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.error-container h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.error-container p {
+  font-size: 1.1rem;
+  margin-bottom: 30px;
+  opacity: 0.9;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .roadmaps-page {
+    padding: 60px 0;
+  }
+
+  .roadmaps-header h1 {
+    font-size: 2.5rem;
+  }
+
+  .roadmaps-header p {
+    font-size: 1rem;
+  }
+
+  .tech-domains-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 0 16px;
+  }
+
+  .tech-domain-card {
+    padding: 14px;
+    gap: 10px;
+  }
+
+  .domain-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .domain-meta {
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .tech-domain-card h3 {
+    font-size: 1.4rem;
+  }
+
+  .domain-actions {
+    flex-direction: column;
+  }
+
+  .roadmaps-footer h2 {
+    font-size: 2rem;
+  }
+
+  .roadmaps-footer p {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .roadmaps-header h1 {
+    font-size: 2rem;
+  }
+
+  .tech-domain-card {
+    padding: 15px;
+  }
+
+  .domain-icon {
+    font-size: 2rem;
+  }
+
+  .tech-list {
+    gap: 6px;
+  }
+
+  .tech-item {
+    padding: 3px 8px;
+    font-size: 0.75rem;
+  }
+
+  .roadmap-step {
+    padding: 6px;
+  }
+
+  .step-content h5 {
+    font-size: 0.75rem;
+  }
+
+  .step-content p {
+    font-size: 0.7rem;
+  }
+} 

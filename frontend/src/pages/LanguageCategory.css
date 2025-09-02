@@ -1,0 +1,236 @@
+.language-category-page {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #000000 0%, #111111 100%);
+  padding: 80px 0;
+}
+
+.category-header {
+  margin-bottom: 60px;
+}
+
+.category-title {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+  max-width: 800px;
+}
+
+.category-icon {
+  font-size: 3rem;
+  margin-top: 8px;
+}
+
+.category-title h1 {
+  font-size: 2.5rem;
+  margin-bottom: 16px;
+  background: linear-gradient(45deg, #ffffff, #cccccc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.category-title p {
+  color: #cccccc;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.languages-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 32px;
+  margin-bottom: 80px;
+}
+
+.language-card {
+  padding: 32px;
+  position: relative;
+  overflow: hidden;
+}
+
+.language-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+  transition: left 0.5s ease;
+}
+
+.language-card:hover::before {
+  left: 100%;
+}
+
+.language-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+
+.language-header h3 {
+  font-size: 1.5rem;
+  color: #ffffff;
+  margin: 0;
+}
+
+.difficulty-badge {
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: capitalize;
+  color: #000000;
+}
+
+.language-description {
+  color: #cccccc;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.language-use-case {
+  margin-bottom: 20px;
+}
+
+.language-use-case h4 {
+  font-size: 1rem;
+  margin-bottom: 8px;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.language-use-case p {
+  color: #cccccc;
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.language-snippets-preview {
+  margin-bottom: 24px;
+}
+
+.language-snippets-preview h4 {
+  font-size: 1rem;
+  margin-bottom: 8px;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.snippets-count {
+  color: #cccccc;
+  font-size: 14px;
+  font-style: italic;
+}
+
+.language-card .btn {
+  width: 100%;
+  margin-top: 16px;
+}
+
+.category-footer {
+  text-align: center;
+  padding-top: 60px;
+  border-top: 1px solid #333333;
+}
+
+.category-footer h2 {
+  font-size: 2rem;
+  margin-bottom: 16px;
+  color: #ffffff;
+}
+
+.category-footer p {
+  color: #cccccc;
+  font-size: 1.1rem;
+  margin-bottom: 24px;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.loading-container,
+.error-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  text-align: center;
+}
+
+.loading-container p,
+.error-container p {
+  margin-top: 16px;
+  color: #cccccc;
+}
+
+.error-container h2 {
+  color: #ff6b6b;
+  margin-bottom: 16px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .language-category-page {
+    padding: 60px 0;
+  }
+  
+  .category-title {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .category-icon {
+    font-size: 2.5rem;
+    margin: 0 auto 16px;
+  }
+  
+  .category-title h1 {
+    font-size: 2rem;
+    text-align: center;
+  }
+  
+  .category-title p {
+    text-align: center;
+  }
+  
+  .languages-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  
+  .language-card {
+    padding: 24px;
+  }
+  
+  .language-header {
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .category-footer h2 {
+    font-size: 1.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .category-title h1 {
+    font-size: 1.75rem;
+  }
+  
+  .category-title p {
+    font-size: 1rem;
+  }
+  
+  .language-card {
+    padding: 20px;
+  }
+  
+  .language-header h3 {
+    font-size: 1.25rem;
+  }
+} 
