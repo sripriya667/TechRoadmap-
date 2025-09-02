@@ -1,13 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import { buildLanguageUrl } from '../utils/techRouting';
 import { motion } from 'framer-motion';
 import './LanguageCategory.css';
 
-interface CodeSnippetPreview {
-  title: string;
-  code: string;
-  language: string;
-}
+// Removed unused CodeSnippetPreview interface
 
 interface Language {
   _id?: string;
@@ -237,6 +234,51 @@ btn.addEventListener('click', () => {
   }
 ];
 
+const BACKEND_LANGUAGES_LOCAL: Language[] = [
+  {
+    name: 'Python',
+    category: 'backend',
+    difficulty: 'beginner',
+    description: 'Versatile language used for web backends, data, and automation.',
+    useCase: 'Build APIs with Django/Flask/FastAPI, scripts, and services.',
+    codeSnippets: [
+      {
+        title: 'Hello API (Flask)',
+        description: 'A minimal Flask endpoint.',
+        language: 'python',
+        code: `from flask import Flask\napp = Flask(__name__)\n@app.get('/')\ndef hello():\n  return {'ok': True}`
+      }
+    ]
+  },
+  {
+    name: 'PHP',
+    category: 'backend',
+    difficulty: 'beginner',
+    description: 'Server-side scripting language widely used for web.',
+    useCase: 'Build dynamic websites and APIs (Laravel).',
+    codeSnippets: [
+      { title: 'Echo', description: 'Simple PHP output.', language: 'php', code: `<?php echo "Hello"; ?>` }
+    ]
+  },
+  { name: 'Java', category: 'backend', difficulty: 'intermediate', description: 'Robust, JVM-based language.', useCase: 'Enterprise APIs with Spring Boot.', codeSnippets: [ { title: 'Main', description: 'Hello from Java.', language: 'java', code: `class Main { public static void main(String[] a){ System.out.println("Hello"); } }` } ] },
+  { name: 'C#', category: 'backend', difficulty: 'intermediate', description: 'Modern language on .NET.', useCase: 'Web APIs with ASP.NET Core.', codeSnippets: [ { title: 'Minimal API', description: 'ASP.NET Core snippet.', language: 'csharp', code: `var app = WebApplication.Create(); app.MapGet("/", () => "OK"); app.Run();` } ] },
+  { name: 'Ruby', category: 'backend', difficulty: 'beginner', description: 'Friendly language with Rails.', useCase: 'Build CRUD apps and APIs.', codeSnippets: [ { title: 'puts', description: 'Print to console.', language: 'ruby', code: `puts 'Hello'` } ] },
+  { name: 'Go', category: 'backend', difficulty: 'intermediate', description: 'Compiled language for services.', useCase: 'Fast APIs and systems.', codeSnippets: [ { title: 'HTTP', description: 'Go HTTP handler.', language: 'go', code: `http.HandleFunc("/", func(w,r){ w.Write([]byte("OK")) })` } ] },
+  { name: 'Rust', category: 'backend', difficulty: 'advanced', description: 'Performance and safety.', useCase: 'High-performance backends.', codeSnippets: [ { title: 'Print', description: 'Hello in Rust.', language: 'rust', code: `fn main(){ println!("Hello"); }` } ] },
+  // Frameworks
+  { name: 'Express.js', category: 'backend', difficulty: 'beginner', description: 'Minimal Node.js web framework.', useCase: 'REST APIs and microservices.', codeSnippets: [ { title: 'Route', description: 'Express route.', language: 'javascript', code: `const app=require('express')(); app.get('/',(_,res)=>res.send('OK'));` } ] },
+  { name: 'NestJS', category: 'backend', difficulty: 'intermediate', description: 'Node.js framework with TypeScript.', useCase: 'Structured server-side apps.', codeSnippets: [ { title: 'Controller', description: 'NestJS controller.', language: 'typescript', code: `@Controller() export class AppController{ @Get() get(){ return 'OK'; } }` } ] },
+  { name: 'Django', category: 'backend', difficulty: 'intermediate', description: 'Batteries-included Python framework.', useCase: 'Full-featured web apps and APIs.', codeSnippets: [ { title: 'View', description: 'Django view.', language: 'python', code: `from django.http import JsonResponse\ndef home(_): return JsonResponse({'ok':True})` } ] },
+  { name: 'Flask', category: 'backend', difficulty: 'beginner', description: 'Lightweight Python microframework.', useCase: 'Small services and APIs.', codeSnippets: [ { title: 'Route', description: 'Flask route.', language: 'python', code: `@app.get('/')\ndef home(): return 'OK'` } ] },
+  { name: 'FastAPI', category: 'backend', difficulty: 'intermediate', description: 'Modern Python API framework.', useCase: 'Fast, typed APIs.', codeSnippets: [ { title: 'Endpoint', description: 'FastAPI endpoint.', language: 'python', code: `from fastapi import FastAPI\napp = FastAPI()\n@app.get('/')\ndef home(): return {'ok':True}` } ] },
+  { name: 'Spring Boot', category: 'backend', difficulty: 'advanced', description: 'Java framework for production services.', useCase: 'Enterprise APIs.', codeSnippets: [ { title: 'RestController', description: 'Spring Boot REST.', language: 'java', code: `@RestController class C{ @GetMapping("/") String ok(){return "OK";} }` } ] },
+  { name: 'ASP.NET Core', category: 'backend', difficulty: 'advanced', description: 'Cross-platform .NET web framework.', useCase: 'High-performance APIs.', codeSnippets: [ { title: 'Minimal API', description: 'ASP.NET Core minimal.', language: 'csharp', code: `var app = WebApplication.Create(); app.MapGet("/", () => "OK"); app.Run();` } ] },
+  { name: 'Laravel', category: 'backend', difficulty: 'intermediate', description: 'Elegant PHP framework.', useCase: 'Rapid web and API development.', codeSnippets: [ { title: 'Route', description: 'Laravel route.', language: 'php', code: `Route::get('/', function(){ return 'OK'; });` } ] },
+  { name: 'Ruby on Rails', category: 'backend', difficulty: 'intermediate', description: 'Convention-over-configuration web framework.', useCase: 'CRUD apps quickly.', codeSnippets: [ { title: 'Route', description: 'Rails route.', language: 'ruby', code: `Rails.application.routes.draw do root 'home#index' end` } ] },
+  { name: 'Gin', category: 'backend', difficulty: 'intermediate', description: 'Fast Go web framework.', useCase: 'REST APIs in Go.', codeSnippets: [ { title: 'Route', description: 'Gin route.', language: 'go', code: `r:=gin.Default(); r.GET("/", func(c){ c.String(200,"OK") })` } ] },
+  { name: 'Actix', category: 'backend', difficulty: 'advanced', description: 'Powerful Rust web framework.', useCase: 'High-performance services.', codeSnippets: [ { title: 'Handler', description: 'Actix handler.', language: 'rust', code: `HttpServer::new(|| App::new().route("/", web::get().to(|| async {"OK"})))` } ] }
+];
+
 const LanguageCategory: React.FC = () => {
   const { category } = useParams<{ category: string }>();
   const [languages, setLanguages] = useState<Language[]>([]);
@@ -251,6 +293,13 @@ const LanguageCategory: React.FC = () => {
 
     if (category === 'frontend') {
       const local = FRONTEND_LANGUAGES_LOCAL.map((l, idx) => ({ ...l, _id: `${idx}` }));
+      setLanguages(local);
+      setLoading(false);
+      return;
+    }
+
+    if (category === 'backend') {
+      const local = BACKEND_LANGUAGES_LOCAL.map((l, idx) => ({ ...l, _id: `${idx}` }));
       setLanguages(local);
       setLoading(false);
       return;
@@ -409,7 +458,7 @@ const LanguageCategory: React.FC = () => {
                 <p>{language.useCase}</p>
               </div>
 
-              <Link to={`/languages/${category}/${language.name.toLowerCase()}`} className="btn btn-primary">
+              <Link to={buildLanguageUrl(language.name)} className="btn btn-primary">
                 View Details
               </Link>
             </motion.div>
