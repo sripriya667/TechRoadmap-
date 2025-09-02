@@ -272,6 +272,29 @@ const LanguageDetail: React.FC = () => {
         if (langKey === 'gin') targetLanguage = simple('Gin','Fast Go web framework.','REST APIs in Go.','go','r:=gin.Default(); r.GET("/", func(c){ c.String(200,"OK") })');
         if (langKey === 'actix') targetLanguage = simple('Actix','Powerful Rust web framework.','High-performance services.','rust','HttpServer::new(|| App::new().route("/", web::get().to(|| async {"OK"})))');
       }
+
+      // Local fallbacks for database
+      if (category === 'database') {
+        const db = (n: string, desc: string, use: string, lang: string, code: string, diff: string = 'intermediate'): Language => ({
+          _id: `local-${n.toLowerCase().replace(/[^a-z0-9]+/g,'-')}`,
+          name: n,
+          category: 'database',
+          description: desc,
+          useCase: use,
+          difficulty: diff as any,
+          codeSnippets: [{ title: 'Example', description: `${n} snippet`, language: lang, code }]
+        });
+        if (langKey === 'sql') targetLanguage = db('SQL','Structured Query Language for relational data.','Query and manipulate relational databases.','sql','SELECT id, name FROM users WHERE active = TRUE ORDER BY created_at DESC;','beginner');
+        if (langKey === 'mysql') targetLanguage = db('MySQL','Open-source relational database.','Web apps and OLTP workloads.','sql','CREATE TABLE users(id INT PRIMARY KEY AUTO_INCREMENT, name VARCHAR(100));','beginner');
+        if (langKey === 'postgresql') targetLanguage = db('PostgreSQL','Advanced relational database.','Complex queries, JSON, GIS.','sql',"SELECT data->>'email' AS email FROM users WHERE (data->>'role')='admin';");
+        if (langKey === 'mongodb' || langKey === 'mongo') targetLanguage = db('MongoDB','Document-oriented NoSQL DB.','Flexible schemas and event data.','javascript','db.users.find({ active: true }, { name: 1 }).sort({ createdAt: -1 })','beginner');
+        if (langKey === 'redis') targetLanguage = db('Redis','In-memory data store.','Caching, queues, real-time counters.','bash','SET page:views 1\nINCR page:views\nGET page:views','beginner');
+        if (langKey === 'sqlite') targetLanguage = db('SQLite','Embedded relational database.','Local apps and prototypes.','sql','CREATE TABLE notes(id INTEGER PRIMARY KEY, body TEXT);','beginner');
+        if (langKey === 'oracle') targetLanguage = db('Oracle','Enterprise RDBMS.','Large-scale OLTP and analytics.','sql','BEGIN\n  DBMS_OUTPUT.PUT_LINE(\'Hello\');\nEND;','advanced');
+        if (langKey === 'sql-server' || langKey === 'sqlserver') targetLanguage = db('SQL Server','Microsoft RDBMS with BI.','Enterprise apps and reporting.','sql','WITH recent AS (SELECT TOP 10 * FROM Orders ORDER BY CreatedAt DESC) SELECT * FROM recent;','advanced');
+        if (langKey === 'elasticsearch') targetLanguage = db('Elasticsearch','Search and analytics engine.','Full-text search and logs.','json','{\n  "query": { "match": { "message": "error" } }\n}');
+        if (langKey === 'neo4j') targetLanguage = db('Neo4j','Native graph database.','Graphs, recommendations, fraud detection.','cypher','MATCH (u:User {id: $id})-[:FOLLOWS]->(f)-[:FOLLOWS]->(fof) RETURN DISTINCT fof');
+      }
     }
 
     if (!targetLanguage) {

@@ -297,6 +297,109 @@ const BACKEND_LANGUAGES_LOCAL: Language[] = [
   { name: 'Actix', category: 'backend', difficulty: 'advanced', description: 'Powerful Rust web framework.', useCase: 'High-performance services.', codeSnippets: [ { title: 'Handler', description: 'Actix handler.', language: 'rust', code: `HttpServer::new(|| App::new().route("/", web::get().to(|| async {"OK"})))` } ] }
 ];
 
+const DATABASE_LANGUAGES_LOCAL: Language[] = [
+  {
+    name: 'SQL',
+    category: 'database',
+    difficulty: 'beginner',
+    description: 'Structured Query Language for defining and manipulating relational data.',
+    useCase: 'Querying, inserting, updating, and aggregating data in relational databases.',
+    codeSnippets: [
+      { title: 'Select', description: 'Basic SELECT query.', language: 'sql', code: 'SELECT id, name FROM users WHERE active = TRUE ORDER BY created_at DESC;' }
+    ]
+  },
+  {
+    name: 'MySQL',
+    category: 'database',
+    difficulty: 'beginner',
+    description: 'Popular open-source relational database.',
+    useCase: 'Web applications, analytics, OLTP workloads.',
+    codeSnippets: [
+      { title: 'Create Table', description: 'Users table.', language: 'sql', code: 'CREATE TABLE users (id INT PRIMARY KEY AUTO_INCREMENT, name VARCHAR(100), created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP);' }
+    ]
+  },
+  {
+    name: 'PostgreSQL',
+    category: 'database',
+    difficulty: 'intermediate',
+    description: 'Advanced open-source relational database with rich features.',
+    useCase: 'Complex queries, JSON, GIS (PostGIS), analytics.',
+    codeSnippets: [
+      { title: 'JSON Query', description: 'Query JSONB data.', language: 'sql', code: "SELECT data->>'email' AS email FROM users WHERE (data->>'role') = 'admin';" }
+    ]
+  },
+  {
+    name: 'MongoDB',
+    category: 'database',
+    difficulty: 'beginner',
+    description: 'Document-oriented NoSQL database.',
+    useCase: 'Flexible schemas, event data, catalogs, content.',
+    codeSnippets: [
+      { title: 'Find Documents', description: 'Query a collection.', language: 'javascript', code: 'db.users.find({ active: true }, { name: 1, email: 1 }).sort({ createdAt: -1 })' }
+    ]
+  },
+  {
+    name: 'Redis',
+    category: 'database',
+    difficulty: 'beginner',
+    description: 'In-memory data store for caching and fast data access.',
+    useCase: 'Caching, queues, real-time counters, sessions.',
+    codeSnippets: [
+      { title: 'Set/Get', description: 'Basic commands.', language: 'bash', code: 'SET page:views 1\nINCR page:views\nGET page:views' }
+    ]
+  },
+  {
+    name: 'SQLite',
+    category: 'database',
+    difficulty: 'beginner',
+    description: 'Lightweight embedded relational database.',
+    useCase: 'Local apps, prototypes, small services.',
+    codeSnippets: [
+      { title: 'Create/Insert', description: 'Inline SQL script.', language: 'sql', code: 'CREATE TABLE notes(id INTEGER PRIMARY KEY, body TEXT);\nINSERT INTO notes(body) VALUES ("Hello");' }
+    ]
+  },
+  {
+    name: 'Oracle',
+    category: 'database',
+    difficulty: 'advanced',
+    description: 'Enterprise-grade relational database system.',
+    useCase: 'Large-scale OLTP, analytics, enterprise data warehousing.',
+    codeSnippets: [
+      { title: 'PL/SQL Block', description: 'Simple PL/SQL.', language: 'sql', code: 'BEGIN\n  DBMS_OUTPUT.PUT_LINE(\'Hello\');\nEND;' }
+    ]
+  },
+  {
+    name: 'SQL Server',
+    category: 'database',
+    difficulty: 'advanced',
+    description: 'Microsoft relational database with BI tooling.',
+    useCase: 'Enterprise applications, reporting, analytics.',
+    codeSnippets: [
+      { title: 'CTE', description: 'Common table expression.', language: 'sql', code: 'WITH recent AS (SELECT TOP 10 * FROM Orders ORDER BY CreatedAt DESC) SELECT * FROM recent;' }
+    ]
+  },
+  {
+    name: 'Elasticsearch',
+    category: 'database',
+    difficulty: 'intermediate',
+    description: 'Search and analytics engine on top of Lucene.',
+    useCase: 'Full-text search, logs, metrics, analytics.',
+    codeSnippets: [
+      { title: 'Match Query', description: 'Search documents.', language: 'json', code: '{\n  "query": { "match": { "message": "error" } }\n}' }
+    ]
+  },
+  {
+    name: 'Neo4j',
+    category: 'database',
+    difficulty: 'intermediate',
+    description: 'Native graph database for connected data.',
+    useCase: 'Social graphs, recommendations, fraud detection.',
+    codeSnippets: [
+      { title: 'Cypher', description: 'Find friends of friends.', language: 'cypher', code: 'MATCH (u:User {id: $id})-[:FOLLOWS]->(f)-[:FOLLOWS]->(fof) RETURN DISTINCT fof' }
+    ]
+  }
+];
+
 const LanguageCategory: React.FC = () => {
   const { category } = useParams<{ category: string }>();
   const [languages, setLanguages] = useState<Language[]>([]);
@@ -318,6 +421,13 @@ const LanguageCategory: React.FC = () => {
 
     if (category === 'backend') {
       const local = BACKEND_LANGUAGES_LOCAL.map((l, idx) => ({ ...l, _id: `${idx}` }));
+      setLanguages(local);
+      setLoading(false);
+      return;
+    }
+
+    if (category === 'database') {
+      const local = DATABASE_LANGUAGES_LOCAL.map((l, idx) => ({ ...l, _id: `${idx}` }));
       setLanguages(local);
       setLoading(false);
       return;
