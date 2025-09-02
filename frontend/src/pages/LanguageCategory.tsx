@@ -197,6 +197,24 @@ btn.addEventListener('click', () => {
     ]
   },
   {
+    name: 'Next.js',
+    category: 'frontend',
+    difficulty: 'intermediate',
+    description: 'React framework for production with routing, SSR/SSG, and APIs.',
+    useCase: 'Build SEO-friendly, fast web apps with file-based routing.',
+    history: 'Created by Vercel; popularized hybrid rendering (SSR/SSG/ISR).',
+    usedInDomains: ['Web Apps', 'E-commerce', 'Dashboards'],
+    popularity: 'Widely adopted for modern React apps.',
+    codeSnippets: [
+      {
+        title: 'Basic Page',
+        description: 'A simple Next.js page component.',
+        language: 'javascript',
+        code: `export default function Home(){\n  return <h1>Hello Next.js</h1>;\n}`
+      }
+    ]
+  },
+  {
     name: 'Bootstrap',
     category: 'frontend',
     difficulty: 'beginner',
@@ -267,7 +285,7 @@ const BACKEND_LANGUAGES_LOCAL: Language[] = [
   { name: 'Rust', category: 'backend', difficulty: 'advanced', description: 'Performance and safety.', useCase: 'High-performance backends.', codeSnippets: [ { title: 'Print', description: 'Hello in Rust.', language: 'rust', code: `fn main(){ println!("Hello"); }` } ] },
   // Frameworks
   { name: 'Express.js', category: 'backend', difficulty: 'beginner', description: 'Minimal Node.js web framework.', useCase: 'REST APIs and microservices.', codeSnippets: [ { title: 'Route', description: 'Express route.', language: 'javascript', code: `const app=require('express')(); app.get('/',(_,res)=>res.send('OK'));` } ] },
-  { name: 'NestJS', category: 'backend', difficulty: 'intermediate', description: 'Node.js framework with TypeScript.', useCase: 'Structured server-side apps.', codeSnippets: [ { title: 'Controller', description: 'NestJS controller.', language: 'typescript', code: `@Controller() export class AppController{ @Get() get(){ return 'OK'; } }` } ] },
+  { name: 'Node.js', category: 'backend', difficulty: 'beginner', description: 'JavaScript runtime built on V8 for server-side apps.', useCase: 'APIs, real-time apps, CLIs.', codeSnippets: [ { title: 'HTTP', description: 'Basic Express server.', language: 'javascript', code: `const express=require('express')(); express.get('/',(_,res)=>res.send('OK')); express.listen(3000);` } ] },
   { name: 'Django', category: 'backend', difficulty: 'intermediate', description: 'Batteries-included Python framework.', useCase: 'Full-featured web apps and APIs.', codeSnippets: [ { title: 'View', description: 'Django view.', language: 'python', code: `from django.http import JsonResponse\ndef home(_): return JsonResponse({'ok':True})` } ] },
   { name: 'Flask', category: 'backend', difficulty: 'beginner', description: 'Lightweight Python microframework.', useCase: 'Small services and APIs.', codeSnippets: [ { title: 'Route', description: 'Flask route.', language: 'python', code: `@app.get('/')\ndef home(): return 'OK'` } ] },
   { name: 'FastAPI', category: 'backend', difficulty: 'intermediate', description: 'Modern Python API framework.', useCase: 'Fast, typed APIs.', codeSnippets: [ { title: 'Endpoint', description: 'FastAPI endpoint.', language: 'python', code: `from fastapi import FastAPI\napp = FastAPI()\n@app.get('/')\ndef home(): return {'ok':True}` } ] },

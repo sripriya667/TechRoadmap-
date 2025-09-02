@@ -230,6 +230,12 @@ const LanguageDetail: React.FC = () => {
           useCase: 'Compose designs directly in markup.',
           codeSnippets: [{ title: 'Utility Button', description: 'Styled with utilities.', language: 'html', code: '<button class="bg-indigo-600 text-white px-4 py-2 rounded">Click</button>' }]
         };
+        if (langKey === 'nextjs' || langKey === 'next' || langKey === 'next.js') targetLanguage = {
+          _id: 'local-nextjs', name: 'Next.js', category: 'frontend', difficulty: 'intermediate',
+          description: 'React framework for production with SSR/SSG routing and API routes.',
+          useCase: 'SEO-friendly web apps, e-commerce, dashboards.',
+          codeSnippets: [{ title: 'Basic Page', description: 'A simple Next.js page.', language: 'javascript', code: 'export default function Home(){\n  return <h1>Hello Next.js</h1>;\n}' }]
+        };
       }
 
       // Local fallbacks for backend
