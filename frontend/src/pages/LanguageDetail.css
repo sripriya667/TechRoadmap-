@@ -55,7 +55,7 @@
 
 .language-content {
   display: grid;
-  grid-template-columns: 1.2fr 1.8fr;
+  grid-template-columns: 1fr 1fr;
   gap: 60px;
   margin-bottom: 80px;
   align-items: start;

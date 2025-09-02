@@ -239,6 +239,14 @@ const LanguageDetail: React.FC = () => {
           name: n, category: 'backend', description: desc, useCase: use, difficulty: diff as any,
           codeSnippets: [{ title: 'Example', description: `${n} snippet`, language: lang, code }]
         });
+        if (langKey === 'node' || langKey === 'nodejs' || langKey === 'node.js') targetLanguage = simple(
+          'Node.js',
+          'JavaScript runtime built on Chrome\'s V8 engine for server-side applications.',
+          'Build APIs, real-time apps, CLIs, and microservices.',
+          'javascript',
+          'const express = require("express");\nconst app = express();\napp.get("/", (_, res) => res.json({ ok: true }));\napp.listen(3000);',
+          'beginner'
+        );
         if (langKey === 'python') targetLanguage = simple('Python','Versatile language across web, data, and automation.','APIs with Django/Flask/FastAPI.','python','from flask import Flask\napp=Flask(__name__)\n@app.get("/")\ndef ok(): return {"ok":True}','beginner');
         if (langKey === 'php') targetLanguage = simple('PHP','Server-side scripting language for the web.','Dynamic sites and APIs (Laravel).','php','<?php echo "Hello"; ?>','beginner');
         if (langKey === 'java') targetLanguage = simple('Java','Widely used JVM language for enterprise.','APIs with Spring Boot.','java','class Main{ public static void main(String[]a){ System.out.println("OK"); }}');
