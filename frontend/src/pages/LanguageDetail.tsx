@@ -44,15 +44,15 @@ const CSS_FALLBACK: Language = {
   _id: 'local-css',
   name: 'CSS',
   category: 'frontend',
-  description: 'Stylesheet language for describing the presentation of a document.',
-  useCase: 'Styling and layout of web pages and UI components.',
+  description: 'Cascading Style Sheets (CSS) describes how HTML is presented—layout, colors, typography, animations.',
+  useCase: 'Create responsive layouts, themes, and interactions across websites and apps.',
   difficulty: 'beginner',
   codeSnippets: [
     {
       title: 'Button Styles',
-      description: 'A simple button style with hover state.',
+      description: 'A simple button style with hover state and variables.',
       language: 'css',
-      code: `.btn {\n  background: #4f46e5;\n  color: #fff;\n  padding: 10px 16px;\n  border-radius: 8px;\n}\n.btn:hover {\n  background: #3730a3;\n}`
+      code: `:root { --primary: #4f46e5; }\n.btn {\n  background: var(--primary);\n  color: #fff;\n  padding: 10px 16px;\n  border-radius: 8px;\n  transition: background .2s ease;\n}\n.btn:hover {\n  background: #3730a3;\n}`
     }
   ]
 };
@@ -61,13 +61,13 @@ const JAVASCRIPT_FALLBACK: Language = {
   _id: 'local-js',
   name: 'JavaScript',
   category: 'frontend',
-  description: 'Programming language of the web for interactivity and logic.',
-  useCase: 'Interactivity, DOM manipulation, API calls, SPA logic.',
+  description: 'JavaScript is the programming language of the web, enabling dynamic content and application logic in browsers and beyond.',
+  useCase: 'Add interactivity to pages, build SPAs, call APIs, and power Node.js backends.',
   difficulty: 'beginner',
   codeSnippets: [
     {
       title: 'Counter',
-      description: 'Simple interactive counter.',
+      description: 'Simple interactive counter with event handling and state.',
       language: 'javascript',
       code: `let count = 0;\nconst btn = document.getElementById('inc');\nconst out = document.getElementById('out');\nbtn.addEventListener('click', () => {\n  count++;\n  out.textContent = count;\n});`
     }
@@ -87,12 +87,14 @@ const LanguageDetail: React.FC = () => {
     if (category && language) {
       fetchLanguage();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [category, language]);
 
   useEffect(() => {
     if (languageData && languageData.codeSnippets.length > 0) {
       startTypingEffect();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeSnippet, languageData]);
 
   const fetchLanguage = async () => {
@@ -355,9 +357,9 @@ const LanguageDetail: React.FC = () => {
             <div className="learn-more">
               <h3>Learn more about {languageData.name}</h3>
               <ul>
-                <li><a href="#" target="_blank" rel="noreferrer">Official Docs</a></li>
-                <li><a href="#" target="_blank" rel="noreferrer">MDN / Reference</a></li>
-                <li><a href="#" target="_blank" rel="noreferrer">Recommended YouTube Tutorial</a></li>
+                <li><button className="link-like">Official Docs</button></li>
+                <li><button className="link-like">MDN / Reference</button></li>
+                <li><button className="link-like">Recommended YouTube Tutorial</button></li>
               </ul>
               <p className="note">Replace the above links with your preferred resources.</p>
             </div>

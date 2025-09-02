@@ -1,3 +1,11 @@
+.link-like {
+  background: none;
+  border: none;
+  color: #4f46e5;
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 0;
+}
 .language-detail-page {
   min-height: 100vh;
   background: linear-gradient(180deg, #000000 0%, #111111 100%);

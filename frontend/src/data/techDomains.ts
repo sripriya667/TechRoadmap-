@@ -42,32 +42,18 @@ export const techDomains: TechDomain[] = [
     estimatedTime: '6-12 months',
     color: '#4f46e5',
     languages: [
-      {
-        name: 'HTML5',
-        icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg',
-        description: 'Structure and semantic markup for web pages',
-        codeSnippet: '<!DOCTYPE html>\n<html>\n<head>\n  <title>My Page</title>\n</head>\n<body>\n  <h1>Hello World</h1>\n</body>\n</html>'
-      },
-      {
-        name: 'JavaScript',
-        icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg',
-        description: 'Dynamic programming for web interactivity',
-        codeSnippet: 'const greeting = "Hello World";\nconsole.log(greeting);\n\ndocument.getElementById("btn").addEventListener("click", () => {\n  alert("Button clicked!");\n});'
-      }
+      { name: 'HTML5', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg', description: 'Structure and semantic markup for web pages', codeSnippet: '<!DOCTYPE html>\n<html>\n<head>\n  <title>My Page</title>\n</head>\n<body>\n  <h1>Hello World</h1>\n</body>\n</html>' },
+      { name: 'CSS3', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg', description: 'Styling and layout for the web', codeSnippet: 'body {\n  font-family: system-ui;\n  line-height: 1.6;\n}' },
+      { name: 'JavaScript', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg', description: 'Dynamic programming for web interactivity', codeSnippet: 'const greeting = "Hello World";\nconsole.log(greeting);' },
+      { name: 'TypeScript', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg', description: 'Typed superset of JavaScript', codeSnippet: 'function add(a: number, b: number) {\n  return a + b;\n}' }
     ],
     frameworks: [
-      {
-        name: 'React',
-        icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg',
-        description: 'Frontend library for building user interfaces',
-        codeSnippet: 'import React, { useState } from "react";\n\nfunction App() {\n  const [count, setCount] = useState(0);\n  \n  return (\n    <div>\n      <h1>Count: {count}</h1>\n      <button onClick={() => setCount(count + 1)}>\n        Increment\n      </button>\n    </div>\n  );\n}'
-      },
-      {
-        name: 'Node.js',
-        icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg',
-        description: 'Server-side JavaScript runtime',
-        codeSnippet: 'const express = require("express");\nconst app = express();\n\napp.get("/", (req, res) => {\n  res.json({ message: "Hello World" });\n});\n\napp.listen(3000, () => {\n  console.log("Server running on port 3000");\n});'
-      }
+      { name: 'React', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg', description: 'Frontend library for building user interfaces', codeSnippet: 'import React, { useState } from "react";\nfunction App() {\n  const [count, setCount] = useState(0);\n  return (\n    <button onClick={() => setCount(count + 1)}>Count: {count}</button>\n  );\n}' },
+      { name: 'Angular', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg', description: 'TypeScript-based application framework', codeSnippet: '@Component({ selector: "app-hello", template: "<h1>Hello</h1>" })\nexport class HelloComponent {}' },
+      { name: 'Vue.js', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg', description: 'Progressive framework for building UIs', codeSnippet: 'export default { data() { return { count: 0 }; } }' },
+      { name: 'Svelte', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/svelte/svelte-original.svg', description: 'Compiler that generates minimal JS for UIs', codeSnippet: '<script> let count = 0; </script>\n<button on:click={() => count++}>Count: {count}</button>' },
+      { name: 'Node.js', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg', description: 'Server-side JavaScript runtime', codeSnippet: 'const express = require("express");\nconst app = express();\napp.get("/", (_, res) => res.json({ message: "Hello World" }));\napp.listen(3000);' },
+      { name: 'Express.js', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg', description: 'Web framework for Node.js', codeSnippet: 'const express = require("express");\nconst app = express();\napp.get("/", (_, res) => res.send("OK"));' }
     ],
     roadmapSteps: [
       {

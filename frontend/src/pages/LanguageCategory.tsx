@@ -78,7 +78,9 @@ const FRONTEND_LANGUAGES_LOCAL: Language[] = [
 }
 .btn:hover {
   background: #3730a3;
-}`
+
+
+  }`
       }
     ]
   },
@@ -103,6 +105,133 @@ btn.addEventListener('click', () => {
   count++;
   out.textContent = count;
 });`
+      }
+    ]
+  }
+  ,
+  {
+    name: 'TypeScript',
+    category: 'frontend',
+    difficulty: 'intermediate',
+    description: 'Typed superset of JavaScript that compiles to plain JavaScript.',
+    useCase: 'Build large-scale, maintainable applications with type safety and tooling.',
+    history: 'Developed by Microsoft and released in 2012 to add static types to JavaScript.',
+    usedInDomains: ['Web Apps', 'Node.js Services', 'React/Angular/Vue Projects'],
+    popularity: 'Widely adopted in enterprise and open-source projects.',
+    codeSnippets: [
+      {
+        title: 'Typed Function',
+        description: 'A simple typed function in TypeScript.',
+        language: 'typescript',
+        code: `function add(a: number, b: number): number {\n  return a + b;\n}`
+      }
+    ]
+  },
+  {
+    name: 'React',
+    category: 'frontend',
+    difficulty: 'intermediate',
+    description: 'Library for building user interfaces with components and hooks.',
+    useCase: 'Build interactive, component-driven UIs and SPAs.',
+    history: 'Created at Facebook in 2013; popularized component-based development.',
+    usedInDomains: ['Web Apps', 'PWAs', 'Mobile (React Native)'],
+    popularity: 'One of the most popular frontend libraries.',
+    codeSnippets: [
+      {
+        title: 'Counter Component',
+        description: 'A simple React counter using hooks.',
+        language: 'jsx',
+        code: `function Counter() {\n  const [count, setCount] = React.useState(0);\n  return (\n    <button onClick={() => setCount(count + 1)}>Count: {count}</button>\n  );\n}`
+      }
+    ]
+  },
+  {
+    name: 'Angular',
+    category: 'frontend',
+    difficulty: 'advanced',
+    description: 'Framework for building large-scale applications with TypeScript.',
+    useCase: 'Enterprise-grade SPAs with strong structure and tooling.',
+    history: 'Successor to AngularJS, rebuilt and released by Google in 2016.',
+    usedInDomains: ['Enterprise SPAs', 'Dashboards', 'Admin Tools'],
+    popularity: 'Popular in enterprises and complex apps.',
+    codeSnippets: [
+      {
+        title: 'Component',
+        description: 'Basic Angular component class.',
+        language: 'typescript',
+        code: `@Component({ selector: 'app-hello', template: '<h1>Hello</h1>' })\nexport class HelloComponent {}`
+      }
+    ]
+  },
+  {
+    name: 'Vue.js',
+    category: 'frontend',
+    difficulty: 'intermediate',
+    description: 'Progressive framework for building user interfaces.',
+    useCase: 'Approachable, versatile framework for SPAs and widgets.',
+    history: 'Created by Evan You in 2014; focuses on simplicity and incrementality.',
+    usedInDomains: ['Web Apps', 'Admin Tools', 'Prototypes'],
+    popularity: 'Highly popular with a gentle learning curve.',
+    codeSnippets: [
+      {
+        title: 'Reactive State',
+        description: 'Vue component with reactive data.',
+        language: 'javascript',
+        code: `export default { data() { return { count: 0 }; } }`
+      }
+    ]
+  },
+  {
+    name: 'Svelte',
+    category: 'frontend',
+    difficulty: 'intermediate',
+    description: 'Compiler that turns declarative components into efficient JS.',
+    useCase: 'High-performance UIs with minimal runtime overhead.',
+    history: 'Created by Rich Harris; compiles components at build time.',
+    usedInDomains: ['Web Apps', 'Widgets', 'Sites'],
+    popularity: 'Growing popularity for simplicity and performance.',
+    codeSnippets: [
+      {
+        title: 'Svelte Counter',
+        description: 'Minimal Svelte counter.',
+        language: 'javascript',
+        code: `<script> let count = 0; </script>\n<button on:click={() => count++}>Count: {count}</button>`
+      }
+    ]
+  },
+  {
+    name: 'Bootstrap',
+    category: 'frontend',
+    difficulty: 'beginner',
+    description: 'CSS framework for building responsive, mobile-first sites.',
+    useCase: 'Rapid UI development with prebuilt components.',
+    history: 'Open-sourced by Twitter in 2011.',
+    usedInDomains: ['Websites', 'Dashboards', 'Admin Panels'],
+    popularity: 'Widely used for quick, consistent styling.',
+    codeSnippets: [
+      {
+        title: 'Button',
+        description: 'Bootstrap primary button.',
+        language: 'html',
+        code: `<button class="btn btn-primary">Click</button>`
+      }
+    ]
+  },
+  {
+    name: 'Tailwind CSS',
+    category: 'frontend',
+    difficulty: 'intermediate',
+    description: 'Utility-first CSS framework for rapidly building custom UIs.',
+    useCase: 'Compose complex designs directly in your markup.',
+    history: 'Created by Adam Wathan; popular in modern frontend stacks.',
+    usedInDomains: ['Web Apps', 'Design Systems'],
+    popularity: 'Very popular in modern React/Next.js apps.',
+    codeSnippets: [
+      {
+        title: 'Utility Button',
+        description: 'Tailwind-styled button.',
+        language: 'html',
+        code: `<button class="bg-indigo-600 text-white px-4 py-2 rounded">Click</button>`
       }
     ]
   }
